@@ -23,6 +23,7 @@ export default function Header() {
     { name: "Serviços", href: "#servicos" },
     { name: "Galeria", href: "#galeria" },
     { name: "Diferenciais", href: "#diferenciais" },
+    { name: "Depoimentos", href: "#depoimentos" },
     { name: "Contato", href: "#contato" },
   ];
 
@@ -38,14 +39,18 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="#inicio" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#E53935] to-red-500 flex items-center justify-center text-white shadow-lg shadow-red-500/20 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#E53935] to-red-500 flex items-center justify-center text-white shadow-lg shadow-red-500/30 group-hover:scale-105 transition-transform duration-300">
               <Sparkles className="w-5 h-5" />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-xl sm:text-2xl tracking-tight text-slate-900 font-poppins">
-                PLAY ARTE <span className="text-[#E53935]">LASER</span>
+              <span className={`font-extrabold text-xl sm:text-2xl tracking-tight transition-colors duration-300 font-poppins ${
+                isScrolled ? "text-slate-900" : "text-white"
+              }`}>
+                PLAY ARTE <span className="text-[#E53935] drop-shadow-sm">LASER</span>
               </span>
-              <span className="text-[10px] tracking-widest uppercase font-semibold text-slate-500 -mt-1">
+              <span className={`text-[10px] tracking-widest uppercase font-bold transition-colors duration-300 -mt-1 ${
+                isScrolled ? "text-slate-500" : "text-slate-300"
+              }`}>
                 Corte & Gravação
               </span>
             </div>
@@ -57,7 +62,11 @@ export default function Header() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-slate-700 hover:text-[#E53935] transition-colors duration-200"
+                className={`text-sm font-semibold transition-colors duration-200 ${
+                  isScrolled
+                    ? "text-slate-700 hover:text-[#E53935]"
+                    : "text-slate-200 hover:text-[#E53935]"
+                }`}
               >
                 {link.name}
               </a>
@@ -68,14 +77,18 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href="tel:1120195711"
-              className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-[#E53935] transition-colors"
+              className={`flex items-center gap-2 text-sm font-semibold transition-colors ${
+                isScrolled
+                  ? "text-slate-700 hover:text-[#E53935]"
+                  : "text-slate-200 hover:text-white"
+              }`}
             >
               <Phone className="w-4 h-4 text-[#E53935]" />
               (11) 2019-5711
             </a>
             <a
               href="#contato"
-              className="bg-[#E53935] hover:bg-[#D32F2F] text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg shadow-red-600/25 transition-all duration-300 hover:scale-105 flex items-center gap-2"
+              className="bg-[#E53935] hover:bg-[#D32F2F] text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-lg shadow-red-600/30 transition-all duration-300 hover:scale-105 flex items-center gap-2"
             >
               Solicitar orçamento
               <ArrowRight className="w-4 h-4" />
@@ -85,13 +98,17 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors"
+            className={`lg:hidden p-2 rounded-lg transition-colors ${
+              isScrolled
+                ? "text-slate-900 hover:bg-slate-100"
+                : "text-white hover:bg-slate-800/60"
+            }`}
             aria-label="Abrir menu"
           >
             {mobileMenuOpen ? (
-              <X className="w-6 h-6 text-slate-900" />
+              <X className="w-6 h-6" />
             ) : (
-              <Menu className="w-6 h-6 text-slate-900" />
+              <Menu className="w-6 h-6" />
             )}
           </button>
         </div>

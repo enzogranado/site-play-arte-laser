@@ -66,6 +66,8 @@ export default function HeroSection() {
               </a>
             </div>
 
+
+
             {/* Highlights */}
             <div className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-slate-800/80">
               <div className="flex items-center gap-2.5 text-slate-300 text-sm font-medium">

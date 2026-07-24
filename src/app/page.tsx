@@ -1,7 +1,9 @@
 import React from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import SocialProofStats from "@/components/SocialProofStats";
 import AboutSection from "@/components/AboutSection";
+import TrustLogosSection from "@/components/TrustLogosSection";
 import ServicesSection from "@/components/ServicesSection";
 import GallerySection from "@/components/GallerySection";
 import DifferentialsSection from "@/components/DifferentialsSection";
@@ -16,7 +18,9 @@ export default function Home() {
     <main className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
       <Header />
       <HeroSection />
+      <SocialProofStats />
       <AboutSection />
+      <TrustLogosSection />
       <ServicesSection />
       <GallerySection />
       <DifferentialsSection />
