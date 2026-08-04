@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { CartProvider } from "@/context/CartContext";
+import CartDrawer from "@/components/CartDrawer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -70,8 +72,11 @@ export default function RootLayout({
       className={`${inter.variable} ${poppins.variable} scroll-smooth h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-white text-slate-900 selection:bg-red-600 selection:text-white">
-        {children}
-        <WhatsAppButton />
+        <CartProvider>
+          {children}
+          <CartDrawer />
+          <WhatsAppButton />
+        </CartProvider>
       </body>
     </html>
   );

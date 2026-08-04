@@ -2,12 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Sparkles, Phone, ArrowRight } from "lucide-react";
+import { Menu, X, Sparkles, Phone, ArrowRight, ShoppingBag, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "@/context/CartContext";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const { totalItems, setIsCartOpen } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +59,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -70,10 +73,34 @@ export default function Header() {
                 {link.name}
               </a>
             ))}
+            <Link
+              href="/admin"
+              className={`text-xs font-bold px-3 py-1.5 rounded-full border transition-all ${
+                isScrolled
+                  ? "border-slate-300 text-slate-700 hover:bg-slate-100"
+                  : "border-slate-700 text-slate-300 hover:bg-slate-800"
+              }`}
+            >
+              Painel Vendas
+            </Link>
           </nav>
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center gap-4">
+            {/* Cart Icon Button */}
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2.5 rounded-full bg-slate-900 hover:bg-[#E53935] text-white transition-all shadow-md group"
+              title="Abrir carrinho de compras"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#E53935] text-white text-[10px] font-black flex items-center justify-center border-2 border-white shadow-sm animate-pulse">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+
             <a
               href="tel:1120195711"
               className={`flex items-center gap-2 text-sm font-semibold transition-colors ${
@@ -94,22 +121,36 @@ export default function Header() {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              isScrolled
-                ? "text-slate-900 hover:bg-slate-100"
-                : "text-white hover:bg-slate-800/60"
-            }`}
-            aria-label="Abrir menu"
-          >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+          {/* Mobile Menu Button + Cart */}
+          <div className="flex items-center gap-3 lg:hidden">
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 rounded-full bg-slate-900 text-white"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#E53935] text-white text-[9px] font-black flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`p-2 rounded-lg transition-colors ${
+                isScrolled
+                  ? "text-slate-900 hover:bg-slate-100"
+                  : "text-white hover:bg-slate-800/60"
+              }`}
+              aria-label="Abrir menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -133,6 +174,14 @@ export default function Header() {
                   {link.name}
                 </a>
               ))}
+              <Link
+                href="/admin"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-sm font-bold text-[#E53935] py-2 flex items-center justify-between"
+              >
+                <span>Painel de Vendas / Admin</span>
+                <ShieldCheck className="w-4 h-4" />
+              </Link>
               <div className="pt-4 flex flex-col gap-3">
                 <a
                   href="tel:1120195711"
