@@ -68,7 +68,7 @@ const galleryItems: GalleryItem[] = [
     title: "Lembranças e Peças Decorativas",
     category: "lembrancas",
     categoryName: "Lembranças",
-    image: "/images/corporate_laser_engraving_1784870530307.png",
+    image: "/images/corporate_laser_engraving.png",
     description: "Caixas e porta-copos personalizados gravados a laser com altíssima qualidade.",
   },
   {

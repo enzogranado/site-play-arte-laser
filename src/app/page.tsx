@@ -2,15 +2,14 @@ import React from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import SocialProofStats from "@/components/SocialProofStats";
-import AboutSection from "@/components/AboutSection";
-import TrustLogosSection from "@/components/TrustLogosSection";
+import ContactSection from "@/components/ContactSection";
+import ProductsEcommerceSection from "@/components/ProductsEcommerceSection";
 import ServicesSection from "@/components/ServicesSection";
 import GallerySection from "@/components/GallerySection";
 import DifferentialsSection from "@/components/DifferentialsSection";
 import ProcessSection from "@/components/ProcessSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import CtaSection from "@/components/CtaSection";
-import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -19,15 +18,19 @@ export default function Home() {
       <Header />
       <HeroSection />
       <SocialProofStats />
-      <AboutSection />
-      <TrustLogosSection />
+      
+      {/* Interactive Quote Calculator placed high up for maximum conversions */}
+      <ContactSection />
+      
+      {/* E-Commerce Catalog & Prices */}
+      <ProductsEcommerceSection />
+      
       <ServicesSection />
       <GallerySection />
       <DifferentialsSection />
       <ProcessSection />
       <TestimonialsSection />
       <CtaSection />
-      <ContactSection />
       <Footer />
     </main>
   );

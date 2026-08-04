@@ -53,16 +53,16 @@ export default function HeroSection() {
                 href="#contato"
                 className="bg-[#E53935] hover:bg-[#D32F2F] text-white font-bold px-8 py-4 rounded-full shadow-xl shadow-red-600/30 transition-all duration-300 hover:scale-105 text-center flex items-center justify-center gap-3 text-base"
               >
-                Solicitar orçamento
+                Simular Orçamento Instantâneo
                 <ArrowRight className="w-5 h-5" />
               </a>
 
               <a
-                href="#galeria"
+                href="#produtos"
                 className="bg-slate-900/90 hover:bg-slate-800 text-white font-semibold px-8 py-4 rounded-full border border-slate-700/80 hover:border-slate-600 transition-all duration-300 text-center flex items-center justify-center gap-2 text-base backdrop-blur-sm"
               >
-                Ver produtos
-                <Layers className="w-4 h-4 text-slate-400" />
+                Ver Catálogo & Preços
+                <Layers className="w-4 h-4 text-red-400" />
               </a>
             </div>
 
