@@ -579,6 +579,15 @@ export default function ProductsEcommerceSection() {
   const [searchQuery, setSearchQuery] = useState("");
   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
   const [activeModalProduct, setActiveModalProduct] = useState<Product | null>(null);
+  const [addedItemIds, setAddedItemIds] = useState<{ [key: string]: boolean }>({});
+
+  const handleAddToCartWithFeedback = (product: Product, qty: number) => {
+    addToCart(product, qty);
+    setAddedItemIds((prev) => ({ ...prev, [product.id]: true }));
+    setTimeout(() => {
+      setAddedItemIds((prev) => ({ ...prev, [product.id]: false }));
+    }, 2000);
+  };
 
   const whatsappNumber = "551120195711";
 
@@ -800,23 +809,27 @@ export default function ProductsEcommerceSection() {
                       </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        onClick={() => addToCart(product, qty)}
-                        className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-3 rounded-2xl text-xs transition-all flex items-center justify-center gap-1.5 shadow-md"
-                      >
-                        <ShoppingBag className="w-3.5 h-3.5" />
-                        <span>+ Carrinho</span>
-                      </button>
-                      <button
-                        onClick={() => handleOrderWhatsApp(product)}
-                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-2xl text-xs transition-all flex items-center justify-center gap-1.5 shadow-md"
-                      >
-                        <MessageCircle className="w-3.5 h-3.5 fill-white" />
-                        <span>Pedir ({totalPriceFormatted})</span>
-                      </button>
-                    </div>
+                    {/* Action Button: Add to Cart */}
+                    <button
+                      onClick={() => handleAddToCartWithFeedback(product, qty)}
+                      className={`w-full font-bold py-3 px-4 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm ${
+                        addedItemIds[product.id]
+                          ? "bg-emerald-600 text-white scale-105"
+                          : "bg-[#E53935] hover:bg-red-700 text-white shadow-red-600/25 hover:shadow-xl"
+                      }`}
+                    >
+                      {addedItemIds[product.id] ? (
+                        <>
+                          <Check className="w-4 h-4" />
+                          <span>Adicionado ao Carrinho! ✓</span>
+                        </>
+                      ) : (
+                        <>
+                          <ShoppingBag className="w-4 h-4" />
+                          <span>Adicionar ao Carrinho ({totalPriceFormatted})</span>
+                        </>
+                      )}
+                    </button>
                   </div>
                 </motion.div>
               );
@@ -904,13 +917,13 @@ export default function ProductsEcommerceSection() {
 
                     <button
                       onClick={() => {
-                        handleOrderWhatsApp(activeModalProduct);
+                        addToCart(activeModalProduct, 1);
                         setActiveModalProduct(null);
                       }}
-                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm"
+                      className="w-full bg-[#E53935] hover:bg-red-700 text-white font-bold py-3 px-4 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm"
                     >
-                      <MessageCircle className="w-4 h-4 fill-white" />
-                      <span>Fazer Pedido no WhatsApp</span>
+                      <ShoppingBag className="w-4 h-4" />
+                      <span>Adicionar ao Carrinho</span>
                     </button>
                   </div>
                 </div>

@@ -4,6 +4,7 @@ import "./globals.css";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { CartProvider } from "@/context/CartContext";
 import CartDrawer from "@/components/CartDrawer";
+import FloatingCartButton from "@/components/FloatingCartButton";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -75,6 +76,7 @@ export default function RootLayout({
         <CartProvider>
           {children}
           <CartDrawer />
+          <FloatingCartButton />
           <WhatsAppButton />
         </CartProvider>
       </body>
